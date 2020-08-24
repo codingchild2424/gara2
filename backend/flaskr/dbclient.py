@@ -13,5 +13,6 @@ def connect(app):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db = SQLAlchemy(app)
+
     return db
 

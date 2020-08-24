@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 
 # POST
-@app.route("/<class_code>/student", methods=("POST"))
+@app.route("/<class_code>/student", methods=(["POST"]))
 def post_student_info(name, picture, class_code):
     # 사진 등록, 학생 등록
     return
@@ -18,7 +18,7 @@ def get_student_info(name, class_code):
 
 
 # POST
-@app.route("/record", methods=("POST"))
+@app.route("/record", methods=(["POST"]))
 def post_record(name, class_code, personality):
     # 설문 결과 등록
     return
