@@ -1,0 +1,5 @@
+/result : result.html
+/result/friends : friends.html
+/result/celebs : celebs.html
+/result/jobs : jobs.html
+/class : class.html
