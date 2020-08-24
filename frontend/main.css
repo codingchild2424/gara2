@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+.template {
+    height: 100% !important;
+    width: 100% !important;
+    background: #fff !important;
+    overflow: hidden !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    font-family: 'Noto Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+    color: #000 !important;
+}
+
+/* p */
+.template p {
+    margin: 1em 0;
+}
+
+/* a */
+.template a {
+    text-decoration: none !important;
+}
+
+.template a:not(.button):visited,
+a:not(.button):link {
+    color: inherit !important;
+}
+
+/* img */
+.template img {
+    display: inline-block !important;
+    max-width: 100% !important;
+    border-radius: 4px !important;
+    margin: 1em 0 !important;
+}
+
+.template h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 !important;
+}
+
+.template h1 {
+    font-size: 1.2em !important;
+}
+
+.template h2 {
+    font-size: 1.1em !important;
+}
+
+.template h3 {
+    font-size: 1.05em !important;
+}
+
+.template h4 {
+    font-size: 1.02em !important;
+}
+
+.template h5 {
+    font-size: 1.00em !important;
+}
+
+/* ul, li */
+.template ul {
+    padding: 0.2em 0 0 !important;
+    margin: 0 !important;
+    list-style-type: none !important;
+}
+
+.template li {
+    padding: 0.5em 0.25em !important;
+    border-bottom: 1px solid .efefef !important;
+    opacity: 0.85 !important;
+    transition: border 0.2s, opacity 0.2s !important;
+}
+
+.template li:hover {
+    border-bottom: 1px solid .b2b2b2 !important;
+    opacity: 1 !important;
+}
+
+.template li:not(.list-card)>a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.container {
+    width: 100% !important;
+    max-width: 700px !important;
+    margin: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* header \26  footer */
+.header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+}
+
+.header .logo {
+    padding: 1.5em 1em !important;
+}
+
+.header>div {
+    margin: 0 !important;
+    padding: 1em !important;
+}
+
+.main>div {
+    margin: 0 !important;
+    padding: 1em !important;
+    
+}
+
+.main {
+    background: #D9D9D9 !important;
+}
+
+.footer {
+    margin-top: 2rem !important;
+    display: block !important;
+    padding: 1em 1em !important;
+    background: #D92B3A !important;
+    color: #D9D9D9 !important;
+}
+
+.footer>div {
+    padding: 0.5em !important;
+}
+
+.footer span {
+    display: block !important;
+    color: #dadada !important;
+}
+
+.footer b {
+    color: #fff !important;
+}
