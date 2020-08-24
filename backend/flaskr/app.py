@@ -1,7 +1,9 @@
 from flask import Flask
-
+import dbclinet
 
 app = Flask(__name__)
+db = dbclient.connect(app)
+Migrate(app, db)
 
 # POST
 @app.route("/<class_code>/student", methods=(["POST"]))
