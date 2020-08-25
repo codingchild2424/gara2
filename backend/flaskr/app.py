@@ -1,4 +1,3 @@
-from flask_migrate import Migrate
 from flask import Flask, request
 
 from flaskr import dbclient, minioclient
@@ -7,8 +6,6 @@ import json
 app = Flask(__name__)
 db = dbclient.connect(app)
 minio = minioclient.connect()
-
-Migrate(app, db)
 
 
 @app.route("/student", methods=(["POST"]))
