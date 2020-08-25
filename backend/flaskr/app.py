@@ -1,8 +1,8 @@
 from flask_migrate import Migrate
-from flask import Flask
+from flask import Flask, request
 
 from flaskr import dbclient, minioclient
-
+import json
 
 app = Flask(__name__)
 db = dbclient.connect(app)
@@ -11,22 +11,27 @@ minio = minioclient.connect()
 Migrate(app, db)
 
 
-@app.route("/<class_code>/student", methods=(["POST"]))
-def post_student_info(name, picture, class_code):
+@app.route("/student", methods=(["POST"]))
+def post_student_info(name, class_code):  # 사진 등록, 학생 등록
     student = Student(name, class_code)
-    # 사진 등록, 학생 등록
+    db.session.add(student)
+    db.commit()
     return
 
 
-@app.route("/<class_code>/<name>")
-def get_student_info(name, class_code):
-    student = None
-    return student  # 이름, 사진, 학급코드, (성향 그룹)
+@app.route("/student/<class_code>/<name>")
+def get_student_info(name, class_code):  # 이름, 사진, 학급코드, (성향 그룹)
+    student = Student.query.filter_by(identifier=f"{class_code}-{name}")[0]
+    return student.name
 
 
 @app.route("/record", methods=(["POST"]))
-def post_record(name, class_code, personality):
-    # 설문 결과 등록
+def post_record(name, class_code, personality):  # 설문 결과 등록
+    student = db.Query.filter_by(identifier=f"{class_code}-{name}")
+    personality_id = db.Query.filter_by(group=personality)
+    student.personality_id = personality_id
+    db.session.add(student)
+    db.session.commit()
     return
 
 
@@ -67,14 +72,16 @@ class Student(db.Model):
     __tablename__ = "students"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    class_code = db.Column(db.Integer)
+    name = db.Column(db.Text, nullable=False)
+    class_code = db.Column(db.Integer, nullable=False)
     personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
+    identifier = db.Column(db.Text, unique=True)
 
     def __init__(self, name, class_code, personality_id=None):
         self.name = name
         self.class_code = class_code
         self.personality_id = personality_id
+        self.identifier = f"{class_code}-{name}"
 
 
 class Problem(db.Model):
