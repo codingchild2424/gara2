@@ -1,6 +1,3 @@
-from app import db
-
-
 class Student(db.Model):
 
     __tablename__ = "students"
@@ -8,13 +5,11 @@ class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
     class_code = db.Column(db.Integer)
-    picture_url = db.Column(db.Text)
     personality_id = db.Column(db.Integer, db.ForeignKey("personality.id"))
 
     def __init__(self, name, class_code, picture_url, personality_id):
         self.name = name
         self.class_code = class_code
-        self.picture_url = picture_url
         self.personality_id = personality_id
 
 
