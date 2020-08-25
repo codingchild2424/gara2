@@ -1,14 +1,112 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어린이용 MBTI 시작하기</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="turbolinks-visit-control" content="reload">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="main.css" type="text/css">
+
+    <title>MBTI: 나와 같은 유형의 친구들</title>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'NEXON Lv1 Gothic OTF Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .next {
+            margin-bottom: 20px;
+           
+            background-color: #5e3287;
+            color: #ffffff;
+            padding: 6px 10px;
+            font-size: 2.4em;
+            cursor: pointer;
+            width: 70%;
+        }
+
+        .my-input-text {
+            background-color: #c5cf7c;
+            border: 0px;
+            color: #3C4424;
+           
+        }
+
+        .my-input {
+            border: 5px solid #c5cf7c;
+            border-radius: 10px;
+        } 
+    </style>
 </head>
 <body>
-준영 쌤의 요청 사항입니다.
-    <p>우리반 코드?</p>
-    <p>너의 이름은?</p>
-    <p>내 사진</p>
+    <div class='template' style="margin-top: 50px;" >
+
+
+        <div class="container" style="font-family: 'GmarketSansMedium'; center-block">
+            <div class="row justify-content-center">
+
+                <div class="input-group input-group-lg my-input" style="margin-top:3rem; width:70%; align-content:center;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text my-input-text" id="inputGroup-sizing-default">우리반 코드는?</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+
+                <div class="input-group input-group-lg my-input" style="margin-top:5rem; width:70%; align-content:center;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text my-input-text" id="inputGroup-sizing-default">너의 이름은?</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group my-input" style="margin-top:5rem; margin-bottom:3rem; width:90%;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text my-input-text" id="inputGroupFileAddon01">내 사진</span>
+                    </div>
+                    <div class="custom-file ">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label " for="inputGroupFile01">파일 선택..</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <a href="http://42af1b8be794.ngrok.io/question.html" class="btn next btn-lg active col-md" role="button" aria-pressed="true" style="margin-bottom:20px; color: white;">시작하기</a>
+
+            </div>            
+        </div>
+</div>
+
+
+        </div>
+        <div class='footer container'>
+            <div class="container">
+                주식회사 이웅기 대표 (비영리 단체)
+                <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
+            </div>
+            <div class="container">
+                <span><a href="mailto:" target="_blank"></a></span>
+                <br>
+                <span> © 2020 이웅기. All rights reserved. </span>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>
