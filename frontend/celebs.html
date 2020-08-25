@@ -3,9 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI: 나와 같은 유형의 유명인</title>
+    <title>MBTI: 나와 같은 유형의 친구들</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-    <p>MBTI: 나와 같은 유형의 유명인</p>
+    <ul class="nav justify-content-end nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">성격유형 테스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">나의 성격유형</a>
+        </li>
+    </ul>
+    <div class='profile mt-3 mb-3 text-center'>
+        <div class='profile-pic'>
+            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진" width=75px height=75px>
+        </div>
+    </div>
+    <div class='type mb-3 ml-4 mr-4 text-center'>
+        <div class='type-heading mb-1 '>이재용님의 MBTI 성격유형은</div>
+        <div class='type-name mb-2 border-bottom'>
+            <h3>INFJ</h3>
+        </div>
+        <!-- 여기까지 동일. inheritance 가능? -->
+        <div class='friends container-fluid '>
+            <div class='friends-title mt-3 mb-3'><b>나와 같은 유형의 유명인</b></div>
+            <div class='friends-list ml-2 mr-2 '>
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>마틴 루터 킹</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>넬슨 만델라</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>테레사 수녀</div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>니콜 키드먼</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>괴테</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>모건 프리먼</div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>레이디 가가</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>칼 융</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>노엄 촘스키</div>
+                    </div>
+                    <div class="w-100"></div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+    <div class='back text-center mb-5'>
+        <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
+    </div>
 </body>
 </html>

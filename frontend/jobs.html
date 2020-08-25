@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI: 내 유형의 추천 직업</title>
+    <title>MBTI: 나와 같은 유형의 친구들</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-    <p>MBTI: 내 유형의 추천 직업</p>
+    <ul class="nav justify-content-end nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">성격유형 테스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">나의 성격유형</a>
+        </li>
+    </ul>
+    <div class='profile mt-3 mb-3 text-center'>
+        <div class='profile-pic'>
+            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진" width=75px height=75px>
+        </div>
+    </div>
+    <div class='type mb-3 ml-4 mr-4 text-center'>
+        <div class='type-heading mb-1 '>이재용님의 MBTI 성격유형은</div>
+        <div class='type-name mb-2 border-bottom'>
+            <h3>INFJ</h3>
+        </div>
+        <!-- 여기까지 동일. inheritance 가능? -->
+        <div class='jobs-title mt-3 mb-3'><b>나와 같은 유형에 잘 맞는 직업</b></div>
+        <div class='jobs-category'>
+            <div class='jobs-category-title text-left'><b>Health Care</b></div>
+            <div class='jobs-category-content text-left'>
+                <ul>
+                    <li><a href="http://www.truity.com/career-profile/physical-therapist">Physical Therapist</a></li>
+                    <li><a href="http://www.truity.com/career-profile/health-educator">Public Health Educator</a></li>
+                    <li><a href="http://www.truity.com/career-profile/physician-or-surgeon">Family Physician</a></li>
+                    <li><a href="http://www.truity.com/career-profile/occupational-therapist">Occupational Therapist</a></li>
+                    <li><a href="http://www.truity.com/career-profile/physician-or-surgeon">Psychiatrist</a></li>
+                    <li><a href="http://www.truity.com/career-profile/physician-assistant">Physician Assistant</a></li>
+                    <li><a href="http://www.truity.com/career-profile/massage-therapist">Massage Therapist</a></li>
+                    <li><a href="http://www.truity.com/career-profile/dietitian-or-nutritionist">Nutritionist</a></li>
+                    <li><a href="http://www.truity.com/career-profile/medical-scientist">Medical Researcher</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class='back text-center mb-5'>
+        <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
+    </div>
 </body>
 </html>
