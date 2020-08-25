@@ -3,14 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI: 우리 반 친구들의 MBTI 유형</title>
+    <title>MBTI: 우리 반 친구들의 성격 유형</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-    <p>INFJ</p>
-    코드를 변경 해봤습니다.
-    코드를 변경 해봤습니다.
-    코드를 변경 해봤습니다.
-    
-    <p>XXXX</p>
+    <ul class="nav justify-content-end nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">MBTI 테스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">내 결과</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">친구들 결과</a>
+        </li>
+    </ul>
+    <div class='profile mt-3 mb-3 text-center'>
+        <div class='profile-pic'>
+            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진" width=75px height=75px>
+        </div>
+    </div>
+    <div class='type mb-3 ml-4 mr-4 text-center'>
+        <div class='type-heading mb-1 '>이재용님의 MBTI 성격유형은</div>
+        <div class='type-name mb-2 border-bottom'>
+            <h3>INFJ</h3>
+        </div>
+        <!-- 여기까지 동일. inheritance 가능? -->
+        <div class='friends container-fluid '>
+            <div class='friends-title mt-3 mb-3'><b>우리 반 친구들의 성격유형</b></div>
+            <div class='friends-list ml-2 mr-2 '>
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>이웅기</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>최준영</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>엄주홍</div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>이경록</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>이재용</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>엄주홍</div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>이은서</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>최서연</div>
+                    </div>
+                    <div class="col">
+                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
+                        <div class='friend-name'>최욱명</div>
+                    </div>
+                    <div class="w-100"></div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+    <div class='back text-center mb-5'>
+        <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
+    </div>
 </body>
 </html>
