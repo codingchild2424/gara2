@@ -5,4 +5,19 @@ services:
     image: ${FLASK_IMAGE}
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./dockerfiles/dockerfile.flask
+    ports:
+      - 5000:5000
+
+  minio:
+    image: ${MINIO_IMAGE}
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dockerfile.minio
+    environment:
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+    ports:
+      - 9000:9000
+    volumes:
+      - ./pictures:/data
