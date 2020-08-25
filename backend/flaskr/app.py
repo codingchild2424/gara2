@@ -1,16 +1,19 @@
 from flask_migrate import Migrate
 from flask import Flask
 
-from flaskr import dbclient
+from flaskr import dbclient, minioclient
 
 
 app = Flask(__name__)
 db = dbclient.connect(app)
+minio = minioclient.connect()
+
 Migrate(app, db)
 
 
 @app.route("/<class_code>/student", methods=(["POST"]))
 def post_student_info(name, picture, class_code):
+    student = Student(name, class_code)
     # 사진 등록, 학생 등록
     return
 
