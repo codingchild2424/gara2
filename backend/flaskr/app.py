@@ -55,7 +55,10 @@ def get_groups():
 
 @app.route("/picture/<class_code>/<name>")
 def get_picture_url(name, class_code):
-    picture_url = None
+    object_name = f"{class_code}/{name}.jpg"
+    picture_url = minio.presigned_get_object(
+        bucket_name="images", object_name=object_name
+    )
     return picture_url  # 등록한 학생 사진 URL
 
 
