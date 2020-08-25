@@ -12,11 +12,19 @@ Migrate(app, db)
 
 
 @app.route("/student", methods=(["POST"]))
-def post_student_info(name, class_code):  # 사진 등록, 학생 등록
-    student = Student(name, class_code)
+def post_student_info():
+    data = json.loads(request.get_data(as_text=True))
+
+    _post_student_info(data["name"], data["class_code"])
+    return "Success"
+
+
+def _post_student_info(name, class_code):  # 사진 등록, 학생 등록
+    data = json.loads(request.get_data(as_text=True))
+
+    student = Student(data["name"], data["class_code"])
     db.session.add(student)
-    db.commit()
-    return
+    db.session.commit()
 
 
 @app.route("/student/<class_code>/<name>")
@@ -26,13 +34,19 @@ def get_student_info(name, class_code):  # 이름, 사진, 학급코드, (성향
 
 
 @app.route("/record", methods=(["POST"]))
-def post_record(name, class_code, personality):  # 설문 결과 등록
+def post_record():  # 설문 결과 등록
+    data = json.loads(requests.get_data(as_text=True))
+
+    _post_record(data["name"], data["class_code"], data["personality"])
+    return "Success"
+
+
+def _post_record(name, class_code, personality):
     student = db.Query.filter_by(identifier=f"{class_code}-{name}")
     personality_id = db.Query.filter_by(group=personality)
     student.personality_id = personality_id
     db.session.add(student)
     db.session.commit()
-    return
 
 
 @app.route("/job/<jobname>")
