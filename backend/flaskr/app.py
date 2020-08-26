@@ -26,7 +26,7 @@ def _post_student_info(name, class_code):  # 사진 등록, 학생 등록
 
 @app.route("/student/<class_code>/<name>")
 def get_student_info(name, class_code):  # 이름, 사진, 학급코드, (성향 그룹)
-    student = Student.query.filter_by(identifier=f"{class_code}-{name}")[0]
+    student = Student.query.filter_by(identifier=f"{class_code}-{name}").first()
     return student.name
 
 
