@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id='demo'></p>
+    <script>
+        var obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+        document.getElementById('demo').innerHTML = obj.name + ", " + obj.age;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (this.readyState ==4 && this.status == 200){
+                var myObj = JSON.parse(this.responseText);
+                document.getElementById('demo').innerHTML = myObj.name;
+            }
+        };
+        xml.http.open('GET', 'json_demo.txt', true);
+        xmlhttp.send();
+    </script>
+</body>
+</html>
