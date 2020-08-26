@@ -100,7 +100,7 @@ class Student(db.Model):
         data = {
             "name": self.name,
             "class_code": self.class_code,
-            "personality_id": self.personality_id,
+            "group": self.personality.group,
         }
         return json.dumps(data, ensure_ascii=False)
 
@@ -117,7 +117,10 @@ class Problem(db.Model):
         self.context = context
 
     def jsonify(self):
-        data = {"context": self.context, "options": self.options}
+        data = {
+            "context": self.context,
+            "options": [option.context for option in self.options],
+        }
         return json.dumps(data, ensure_ascii=False)
 
 
@@ -150,7 +153,13 @@ class Personality(db.Model):
         self.description = description
 
     def jsonify(self):
-        data = {"group": self.group, "description": self.description}
+        data = {
+            "group": self.group,
+            "description": self.description,
+            "students": [student.name for student in self.students],
+            "jobs": [job.name for job in self.jobs],
+            "celebrities": [celebrity.name for celebrity in self.celebrities],
+        }
         return json.dumps(data, ensure_ascii=False)
 
 
@@ -169,7 +178,11 @@ class Job(db.Model):
         self.personality_id = personality_id
 
     def jsonify(self):
-        data = {"name": self.name, "description": self.description}
+        data = {
+            "name": self.name,
+            "description": self.description,
+            "group": self.personality.group,
+        }
         return json.dumps(data, ensure_ascii=False)
 
 
