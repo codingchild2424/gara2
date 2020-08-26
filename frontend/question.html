@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,41 +9,13 @@
     <meta name="turbolinks-visit-control" content="reload">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="main.css" type="text/css">
-
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>MBTI: 나와 같은 유형의 친구들</title>
 
     <style type="text/css">
-        .first {
-            float: left;
-            width: 50%;
-            height: 400px;
-            background-color: #5e3287;
-            color: #d6f010;
-            word-break: keep-all;
-            
-        }
-
-        .second {
-            width: 50%;
-            height: 400px;
-            background-color: #feee13;
-            color: #5e3287;
-            word-break: keep-all;
-        }
-
-        .next {
-            margin-bottom: 20px;
-            border: 4px solid #c5cf7c;
-            background-color: #f7f3cd;
-            color: black;
-            padding: 6px 10px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
         @font-face {
             font-family: 'NEXON Lv1 Gothic OTF Bold';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
@@ -56,83 +28,145 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
             font-weight: normal;
             font-style: normal;
-            
+        }
+        .next {
+            margin-bottom: 20px;
+           
+            background-color: #5e3287;
+            color: #ffffff;
+            padding: 6px 10px;
+            font-size: 2.4em;
+            cursor: pointer;
+            width: 70%;
         }
 
-        .nowrap {
-            white-space: nowrap;
+        .my-input-text {
+            background-color: #c5cf7c;
+            border: 0px;
+            color: #3C4424;
+           
         }
-            
-            
+
+        .my-input {
+            border: 5px solid #c5cf7c;
+            border-radius: 10px;
+        }
+        .file {
+            visibility: hidden;
+            position: absolute;
+        }
+        #upload {
+            opacity: 0;
+        }
+
+        #upload-label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+        }
+
+        .image-area {
+            border: 2px dashed rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            position: relative;
+        }
+
+            .image-area::before {
+                content: 'Uploaded image result';
+                color: #fff;
+                font-weight: bold;
+                text-transform: uppercase;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 0.8rem;
+                z-index: 1;
+            }
+
+            .image-area img {
+                z-index: 2;
+                position: relative;
+            }
     </style>
 </head>
-<body >
-    <div class='template'>
-        <div class=" container" style="font-family: 'GmarketSansMedium';
-        margin-top: 1rem;
-        
-        height: 5rem;
-        border: 6px solid #CFEB70;
-">
-            <div class="row" >
-                <div class="col-2 nowrap" style="margin-top: 1rem; margin-right: 1.5rem; font-size: 1.6em;">
-                    이웅기
-                </div>
-                <div class="progress active" style="margin-top: 1rem; height: 3em; width: 60%;" >
-                    <div class="progress-bar" role="progressbar" style="        width: 25%;
-        background-color: #A7ADF0;" aria-valuenow="25" aria-valuemin="0"
-                         aria-valuemax="100"><p style="font-size: 1.4em">25%</p></div>
-                </div>
-                <div class="col-2" style="margin-top: -1rem;">
-                    <img src="https://image.flaticon.com/icons/svg/326/326314.svg" alt="badge" style="height: 4rem;">
-                </div>
-            </div>
-        </div>
+<body>
+    <div class='template' style="margin-top: 50px;">
 
-        <div class="container" style="        font-family: 'GmarketSansMedium';
-        background-color: #DEF19D;">
 
-        
-        <div class="row justify-content-center">   
-            <div class="card mx-auto" style="        width: 80%;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        border: 4px solid #CFEB70;">
-                <div class="card-body mx-auto">
-              
-                    <p class="card-text h3">나는 새학기 첫날</p>
-                   
+        <div class="container" style="font-family: 'GmarketSansMedium'; center-block">
+            <div class="row justify-content-center">
 
-                        <div align="center">
-                            <button href="#" class="btn first"><p class="h4">처음보는 아이들과 어색하지만 그래도 쉽게 말을 걸며 친해질 수 있다.</p></button>
-                            
-                        
-                            <button href="#" class="btn second"><p class="h4">내가 먼저 말을 걸기 힘들다. 마음이 매우 불편하다.</p></button>
-                        </div>
+                <div class="input-group input-group-lg my-input" style="margin-top:3rem; width:70%; align-content:center;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text my-input-text" id="classCode"><object name="classCode">우리반 코드는?</object></span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+
+                <div class="input-group input-group-lg my-input" style="margin-top:5rem; width:70%; align-content:center;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text my-input-text" id="myName"><object name="userName">너의 이름은?</object></span>
 
                     </div>
-                    <div class="row justify-content-center">
-                        <button href="http://42af1b8be794.ngrok.io/result.html" class="btn next btn-lg active" role="button" aria-pressed="true" >다음</button>
-                    </div>        
 
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="row py-4">
+                    <div class="col-lg-6 mx-auto">
+
+                        <!-- Upload image input-->
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                            <div class="input-group-append">
+                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                            </div>
+                        </div>
+
+                        <!-- Uploaded image area-->
+                        <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
+                        <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        
-            <div class='footer container'>
-                <div class="container">
-                    주식회사 이웅기 대표 (비영리 단체)
-                    <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
-                </div>
-                <div class="container">
-                    <span><a href="mailto:" target="_blank"></a></span>
-                    <br>
-                    <span> © 2020 이웅기. All rights reserved. </span>
-                </div>
+            
+            <div class="row justify-content-center">
+                <a href="http://42af1b8be794.ngrok.io/question.html" class="btn next btn-lg active col-md" role="button" aria-pressed="true" style="margin-bottom:20px; color: white;" onclick="store()">시작하기</a>
+
             </div>
+            <script type="text/javascript">funtion store(){
+                    var inputClassCode = document.getElementById("classCode");
+                    var inputName = document.getElementById("myName");
+
+
+                    localStorage.setItem("classCode", inputClassCode.value);
+                    localStorage.setItem("myName", inputName.value);</script>
         </div>
     </div>
 
 
+    </div>
+    <div class='footer container'>
+        <div class="container">
+            주식회사 이웅기 대표 (비영리 단체)
+            <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
+        </div>
+        <div class="container">
+            <span><a href="mailto:" target="_blank"></a></span>
+            <br>
+            <span> © 2020 이웅기. All rights reserved. </span>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="script2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
