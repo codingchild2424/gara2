@@ -61,7 +61,6 @@ def get_personality(group):
 
 
 def get_group_members(personality):
-    students = Student.query.
     group_members = None
     return group_members
 
@@ -103,7 +102,7 @@ class Student(db.Model):
             "class_code": self.class_code,
             "personality_id": self.personality_id,
         }
-        return json.dumps(data)
+        return json.dumps(data, ensure_ascii=False)
 
 
 class Problem(db.Model):
@@ -119,11 +118,8 @@ class Problem(db.Model):
         self.options = options
 
     def jsonify(self):
-        data = {
-            'context': self.context,
-            'options': self.options
-        }
-        return json.dumps(data)
+        data = {"context": self.context, "options": self.options}
+        return json.dumps(data, ensure_ascii=False)
 
 
 class Personality(db.Model):
@@ -146,7 +142,7 @@ class Personality(db.Model):
 
     def jsonify(self):
         data = {"group": self.group, "description": self.description}
-        return json.dumps(data)
+        return json.dumps(data, ensure_ascii=False)
 
 
 class Job(db.Model):
@@ -154,7 +150,7 @@ class Job(db.Model):
     __tablename__ = "jobs"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Colume(db.Text)
+    name = db.Column(db.Text)
     description = db.Column(db.Text)
     linked_personality_jobs = db.relationship(
         "PersonalityJob", backref="job", lazy="dynamic"
@@ -166,7 +162,7 @@ class Job(db.Model):
 
     def jsonify(self):
         data = {"name": self.name, "description": self.description}
-        return json.dumps(data)
+        return json.dumps(data, ensure_ascii=False)
 
 
 # personailty_jobs = db.Table(
