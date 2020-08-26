@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="main.css" type="text/css">
-
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>MBTI: 나와 같은 유형의 친구들</title>
 
     <style type="text/css">
@@ -50,11 +50,49 @@
         .my-input {
             border: 5px solid #c5cf7c;
             border-radius: 10px;
-        } 
+        }
+        .file {
+            visibility: hidden;
+            position: absolute;
+        }
+        #upload {
+            opacity: 0;
+        }
+
+        #upload-label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+        }
+
+        .image-area {
+            border: 2px dashed rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            position: relative;
+        }
+
+            .image-area::before {
+                content: 'Uploaded image result';
+                color: #fff;
+                font-weight: bold;
+                text-transform: uppercase;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 0.8rem;
+                z-index: 1;
+            }
+
+            .image-area img {
+                z-index: 2;
+                position: relative;
+            }
     </style>
 </head>
 <body>
-    <div class='template' style="margin-top: 50px;" >
+    <div class='template' style="margin-top: 50px;">
 
 
         <div class="container" style="font-family: 'GmarketSansMedium'; center-block">
@@ -62,7 +100,7 @@
 
                 <div class="input-group input-group-lg my-input" style="margin-top:3rem; width:70%; align-content:center;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text my-input-text" id="inputGroup-sizing-default">우리반 코드는?</span>
+                        <span class="input-group-text my-input-text" id="classCode"><object name="classCode">우리반 코드는?</object></span>
                     </div>
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
@@ -70,43 +108,66 @@
 
                 <div class="input-group input-group-lg my-input" style="margin-top:5rem; width:70%; align-content:center;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text my-input-text" id="inputGroup-sizing-default">너의 이름은?</span>
+                        <span class="input-group-text my-input-text" id="myName"><object name="userName">너의 이름은?</object></span>
+
                     </div>
+
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <div class="input-group my-input" style="margin-top:5rem; margin-bottom:3rem; width:90%;">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text my-input-text" id="inputGroupFileAddon01">내 사진</span>
-                    </div>
-                    <div class="custom-file ">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label " for="inputGroupFile01">파일 선택..</label>
+
+                <div class="row py-4">
+                    <div class="col-lg-6 mx-auto">
+
+                        <!-- Upload image input-->
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                            <div class="input-group-append">
+                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                            </div>
+                        </div>
+
+                        <!-- Uploaded image area-->
+                        <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>
+                        <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
                     </div>
                 </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <a href="http://70571de64193.ngrok.io/question.html" class="btn next btn-lg active col-md" role="button" aria-pressed="true" style="margin-bottom:20px; color: white;" onclick="store()">시작하기</a>
 
             </div>
-            <div class="row">
-                <a href="http://42af1b8be794.ngrok.io/question.html" class="btn next btn-lg active col-md" role="button" aria-pressed="true" style="margin-bottom:20px; color: white;">시작하기</a>
-
-            </div>            
-        </div>
-</div>
+            <script type="text/javascript">funtion store(){
+                    var inputClassCode = document.getElementById("classCode");
+                    var inputName = document.getElementById("myName");
 
 
-        </div>
-        <div class='footer container'>
-            <div class="container">
-                주식회사 이웅기 대표 (비영리 단체)
-                <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
-            </div>
-            <div class="container">
-                <span><a href="mailto:" target="_blank"></a></span>
-                <br>
-                <span> © 2020 이웅기. All rights reserved. </span>
-            </div>
+                    localStorage.setItem("classCode", inputClassCode.value);
+                    localStorage.setItem("myName", inputName.value);</script>
         </div>
     </div>
 
 
+    </div>
+    <div class='footer container'>
+        <div class="container">
+            주식회사 이웅기 대표 (비영리 단체)
+            <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
+        </div>
+        <div class="container">
+            <span><a href="mailto:" target="_blank"></a></span>
+            <br>
+            <span> © 2020 이웅기. All rights reserved. </span>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script2.js"></script>
 </body>
 </html>
