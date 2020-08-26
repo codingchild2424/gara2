@@ -85,12 +85,12 @@ class Student(db.Model):
     __tablename__ = "students"
 
     id = db.Column(db.Integer, primary_key=True)
+    identifier = db.Column(db.Text, unique=True, nullable=False)
     name = db.Column(db.Text, nullable=False)
     class_code = db.Column(db.Integer, nullable=False)
-    identifier = db.Column(db.Text, unique=True)
     personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
 
-    def __init__(self, name, class_code, personality_id=None):
+    def __init__(self, name, class_code, personality_id):
         self.name = name
         self.class_code = class_code
         self.personality_id = personality_id
@@ -111,15 +111,27 @@ class Problem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     context = db.Column(db.Text)
-    options = db.Column(db.Text)
+    options = db.relationship("Option", backref="problem", lazy="dynamic")
 
-    def __init__(self, context, options):
+    def __init__(self, context):
         self.context = context
-        self.options = options
 
     def jsonify(self):
         data = {"context": self.context, "options": self.options}
         return json.dumps(data, ensure_ascii=False)
+
+
+class Option(db.Model):
+
+    __tablename__ = "options"
+
+    id = db.Column(db.Integer, primary_key=True)
+    problem_id = db.Column(db.Integer, db.ForeignKey("problems.id"))
+    context = db.Column(db.Text)
+
+    def __init__(self, problem_id, context):
+        self.problem_id = problem_id
+        self.context = context
 
 
 class Personality(db.Model):
@@ -127,14 +139,11 @@ class Personality(db.Model):
     __tablename__ = "personalities"
 
     id = db.Column(db.Integer, primary_key=True)
-    group = db.Column(db.Text)
+    group = db.Column(db.Text, unique=True, nullable=False)
     description = db.Column(db.Text)
-    linked_personality_jobs = db.relationship(
-        "PersonalityJob", backref="personalities", lazy="dynamic"
-    )
-    linked_students = db.relationship(
-        "Student", backref="personalities", lazy="dynamic"
-    )
+    students = db.relationship("Student", backref="personality", lazy="dynamic")
+    celebrities = db.relationship("Celebrity", backref="personality", lazy="dynamic")
+    jobs = db.relationship("Job", backref="personality", lazy="dynamic")
 
     def __init__(self, group, description):
         self.group = group
@@ -150,35 +159,28 @@ class Job(db.Model):
     __tablename__ = "jobs"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
+    name = db.Column(db.Text, unique=True, nullable=False)
     description = db.Column(db.Text)
-    linked_personality_jobs = db.relationship(
-        "PersonalityJob", backref="job", lazy="dynamic"
-    )
+    personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, personality_id):
         self.name = name
         self.description = description
+        self.personality_id = personality_id
 
     def jsonify(self):
         data = {"name": self.name, "description": self.description}
         return json.dumps(data, ensure_ascii=False)
 
 
-# personailty_jobs = db.Table(
-#     "personalityjob",
-#     db.Column("tag_id", db.Integer, db.ForeignKey("tag.id"), primary_key=True),
-#     db.Column("page_id", db.Integer, db.ForeignKey("page.id"), primary_key=True),
-# )
+class Celebrity(db.Model):
 
-
-class PersonalityJob(db.Model):
-    __tablename__ = "personalityjob"
+    __tablename__ = "celebrities"
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, unique=True, nullable=False)
     personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
-    job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"))
 
-    def __init__(self, personality_id, job_id):
+    def __init__(self, name, personality_id):
+        self.name = name
         self.personality_id = personality_id
-        self.job_id = job_id

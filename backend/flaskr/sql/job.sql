@@ -1,0 +1,9 @@
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("경찰관", "경찰관", 1);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("선생님", "선생님", 2);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("프로그래머", "프로그래머",3 );
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("기획자", "기획자", 4);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("디자이너", "디자이너", 5);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("회계사", "회계사",6 );
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("프로게이머", "프로게이머", 7);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("운동선수", "운동선수", 8);
+INSERT INTO jobs ("name", "description", "personality_id") VALUES ("작가", "작가", 9);

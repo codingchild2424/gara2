@@ -1,0 +1,16 @@
+INSERT INTO personalities ("group", "description") VALUES ("ENFJ", "ENFJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ENFP", "ENFP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ENTJ", "ENTJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ENTP", "ENTP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ESFJ", "ESFJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ESFP", "ESFP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ESTJ", "ESTJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ESTP", "ESTP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("INFJ", "INFJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("INFP", "INFP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("INTJ", "INTJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("INTP", "INTP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ISFJ", "ISFJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ISFP", "ISFP 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ISTJ", "ISTJ 유형");
+INSERT INTO personalities ("group", "description") VALUES ("ISTP", "ISTP 유형");
