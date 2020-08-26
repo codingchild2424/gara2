@@ -1,4 +1,4 @@
-﻿
+
 var totalScore;
 var percent = 0;
 var nextButton = document.getElementById('nextButton');
@@ -28,7 +28,7 @@ nextButton.addEventListener('click', function () {
 
     if (percent >= 100) {
         $('#progressBar').removeClass('progress-bar-striped active');
-        $('#nextButton').attr('disabled', true);
+        $('#nextButton').css('display', 'none');
         $('#nextStage').css('display', 'inline');
 
     }
