@@ -1,6 +1,3 @@
-
-
-
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -14,32 +11,20 @@ function readURL(input) {
 }
 
 function store() {
-    var inputClassCode = document.getElementById("classCode");
-    var inputName = document.getElementById("name");
+    var class_code = document.getElementById("classCode").value;
+    var name = document.getElementById("name").value;
 
-
-    localStorage.setItem("classCode", inputClassCode.value);
-    localStorage.setItem("name", inputName.value);
-
-    var userName = localStorage.getItem('name');
-    var classCode = localStorage.getItem('classCode');
+    localStorage.setItem("class_code", class_code);
+    localStorage.setItem("name", name);
+    
 
     var user = {
-        "name": userName.value,
-        "class_code": classCode.value
+        "name": name,
+        "class_code": class_code
 
     };
 
-
     console.log(user);
-    $.ajax({
-        url: '/start',
-        dataType: 'json',
-        type: 'POST',
-        data: JSON.stringify(user),
-        contentType: 'application/json; charset=UTF-8',
-        success: function (result) { console.log(result); }
-    });
 }
 
 $(function () {
