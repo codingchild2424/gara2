@@ -1,9 +1,10 @@
 from flask import Flask, request
+from flask_cors import CORS
 
-from flaskr import dbclient, minioclient
-import json
+import dbclient, minioclient, json
 
 app = Flask(__name__)
+CORS(app)
 db = dbclient.connect(app)
 minio = minioclient.connect()
 
@@ -33,7 +34,7 @@ def get_student_info(name, class_code):  # 이름, 사진, 학급코드, (성향
 
 @app.route("/record", methods=(["POST"]))
 def post_record():  # 설문 결과 등록
-    data = json.loads(requests.get_data(as_text=True))
+    data = json.loads(request.get_data(as_text=True))
 
     student = _post_record(data["name"], data["class_code"], data["personality"])
     return student.jsonify()
