@@ -131,11 +131,13 @@ class Option(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     problem_id = db.Column(db.Integer, db.ForeignKey("problems.id"))
+    personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
     context = db.Column(db.Text)
 
-    def __init__(self, problem_id, context):
+    def __init__(self, problem_id, context, personality_id):
         self.problem_id = problem_id
         self.context = context
+        self.personality_id = personality_id
 
 
 class Personality(db.Model):
@@ -148,6 +150,7 @@ class Personality(db.Model):
     students = db.relationship("Student", backref="personality", lazy="dynamic")
     celebrities = db.relationship("Celebrity", backref="personality", lazy="dynamic")
     jobs = db.relationship("Job", backref="personality", lazy="dynamic")
+    options = db.relationship("Option", backref="personality", lazy="dynamic")
 
     def __init__(self, group, description):
         self.group = group
@@ -194,7 +197,9 @@ class Celebrity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, unique=True, nullable=False)
     personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
+    picture_url = db.Column(db.Text)
 
-    def __init__(self, name, personality_id):
+    def __init__(self, name, personality_id, picture_url):
         self.name = name
         self.personality_id = personality_id
+        self.picture_url = picture_url
