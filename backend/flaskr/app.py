@@ -242,11 +242,29 @@ def init_celebs():
 
 def init_jobs():
     # 직업명, 성향, 설명
+    group_id = {
+        "ENFJ": "1",
+        "ENFP": "2",
+        "ENTJ": "3",
+        "ENTP": "4",
+        "ESFJ": "5",
+        "ESFP": "6",
+        "ESTJ": "7",
+        "ESTP": "8",
+        "INFJ": "9",
+        "INFP": "10",
+        "INTJ": "11",
+        "INTP": "12",
+        "ISFJ": "13",
+        "ISFP": "14",
+        "ISTJ": "15",
+        "ISTP": "16",
+    }
     with open(f"{basedir}/jobs.csv", newline="") as csvfile:
         spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
         for row in spamreader:
             name, group, description = row
-            job = Job(name, group, description)
+            job = Job(name, description, group_id[group])
             db.session.add(job)
 
         db.session.commit()
