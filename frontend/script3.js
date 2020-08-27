@@ -13,21 +13,30 @@ function readURL(input) {
     }
 }
 
-function signup() {
+function store() {
+    var inputClassCode = document.getElementById("classCode");
+    var inputName = document.getElementById("name");
+
+
+    localStorage.setItem("classCode", inputClassCode.value);
+    localStorage.setItem("name", inputName.value);
+
     var userName = localStorage.getItem('name');
     var classCode = localStorage.getItem('classCode');
 
     var user = {
-        "name": userName,
-        "class_code": classCode
+        "name": userName.value,
+        "class_code": classCode.value
 
     };
 
+
+    console.log(user);
     $.ajax({
         url: '/start',
         dataType: 'json',
         type: 'POST',
-        data: JSON.stringift(user),
+        data: JSON.stringify(user),
         contentType: 'application/json; charset=UTF-8',
         success: function (result) { console.log(result); }
     });
