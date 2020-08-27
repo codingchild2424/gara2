@@ -58,8 +58,6 @@
         <input type="button" value="◀ 돌아가기" onClick= 'history.back(-1)' class='btn btn-secondary'>
     </div>
 
-
-
     <script>
         var client = new XMLHttpRequest();
         client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/students.json');
@@ -88,54 +86,8 @@
         }
         client.send()
     </script>
-    <script>
-        var jsonarray = [
-            {
-                "name": "이재용1",
-                "class": 1,
-                "type": "INFJ",
-                "pic": "https://i.imgur.com/ScN6few.png"
-            },
-            {
-                "name": "이재용2",
-                "class": 2,
-                "type": "ENFJ",
-                "pic": "https://i.imgur.com/3baz8Dt.png"
-            },
-            {
-                "name": "이재용3",
-                "class": 3,
-                "type": "ISFJ",
-                "pic": "https://i.imgur.com/BataZQ0.png"
-            },
-            {
-                "name": "이재용4",
-                "class": 4,
-                "type": "INTJ",
-                "pic": "https://i.imgur.com/bxfZkVX.png"
-            },
-            {
-                "name": "이재용5",
-                "class": 5,
-                "type": "INFP",
-                "pic": "https://i.imgur.com/QmRY96X.png"
-            }
-        ]
-        var addingstring = '';
-        for (i=0; i<jsonarray.length; i++){
-            var name = jsonarray[i].name;
-            var pic = jsonarray[i].pic;
-            var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div></div>";
-            if(i%3 == 2){
-                profilestring += "<div class='w-100'></div>";
-            };
-            addingstring += profilestring;
-        }
-        var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
-        addingstring += tail.repeat(3-(jsonarray.length)%3);
-        console.log(addingstring);
-        document.querySelector(".row").innerHTML = addingstring;
-    </script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
