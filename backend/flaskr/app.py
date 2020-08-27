@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-import dbclient, minioclient, json
+import dbclient, minioclient, json, csv, os
 
 app = Flask(__name__)
 CORS(app)
@@ -131,13 +131,13 @@ class Option(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     problem_id = db.Column(db.Integer, db.ForeignKey("problems.id"))
-    personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
     context = db.Column(db.Text)
+    personality = db.Column(db.Text)
 
-    def __init__(self, problem_id, context, personality_id):
+    def __init__(self, problem_id, context, personality):
         self.problem_id = problem_id
         self.context = context
-        self.personality_id = personality_id
+        self.personality = personality
 
 
 class Personality(db.Model):
@@ -150,7 +150,6 @@ class Personality(db.Model):
     students = db.relationship("Student", backref="personality", lazy="dynamic")
     celebrities = db.relationship("Celebrity", backref="personality", lazy="dynamic")
     jobs = db.relationship("Job", backref="personality", lazy="dynamic")
-    options = db.relationship("Option", backref="personality", lazy="dynamic")
 
     def __init__(self, group, description):
         self.group = group
@@ -203,3 +202,115 @@ class Celebrity(db.Model):
         self.name = name
         self.personality_id = personality_id
         self.picture_url = picture_url
+
+
+########## INITAILIZE DATABASE ##############
+
+basedir = os.path.join(os.path.abspath(os.path.dirname(__file__)), "./csv")
+
+
+def init_celebs():
+    # 이름, 성향, 사진 url
+    group_id = {
+        "ENFJ": "1",
+        "ENFP": "2",
+        "ENTJ": "3",
+        "ENTP": "4",
+        "ESFJ": "5",
+        "ESFP": "6",
+        "ESTJ": "7",
+        "ESTP": "8",
+        "INFJ": "9",
+        "INFP": "10",
+        "INTJ": "11",
+        "INTP": "12",
+        "ISFJ": "13",
+        "ISFP": "14",
+        "ISTJ": "15",
+        "ISTP": "16",
+    }
+    with open(f"{basedir}/celebs.csv", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        for row in spamreader:
+            name, group, picture_url = row
+
+            celebrity = Celebrity(name, group_id[group], picture_url)
+            db.session.add(celebrity)
+
+        db.session.commit()
+
+
+def init_jobs():
+    # 직업명, 성향, 설명
+    with open(f"{basedir}/jobs.csv", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        for row in spamreader:
+            name, group, description = row
+            job = Job(name, group, description)
+            db.session.add(job)
+
+        db.session.commit()
+
+
+def init_personalities():
+    # 성향, 설명
+    with open(f"{basedir}/personalities.csv", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        for row in spamreader:
+            group, description = row
+            personality = Personality(group, description)
+            db.session.add(personality)
+
+        db.session.commit()
+
+
+def init_problems():
+    # 문제, 선택지1, 선택지2, 선택지1 성향, 선택지2 성향
+    opt_group = {
+        "1": "E",
+        "2": "I",
+        "3": "S",
+        "4": "N",
+        "5": "T",
+        "6": "F",
+        "7": "J",
+        "8": "P",
+    }
+    with open(f"{basedir}/problems.csv", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        for idx, row in enumerate(spamreader):
+            problem_context, option_1, option_2, option1_group, option2_group = row
+            problem = Problem(problem_context)
+
+            opt1 = opt_group[option1_group]
+            opt2 = opt_group[option2_group]
+
+            option1 = Option(idx + 1, option_1, opt1)
+            option2 = Option(idx + 1, option_2, opt2)
+
+            db.session.add(problem)
+            db.session.add(option1)
+            db.session.add(option2)
+
+        db.session.commit()
+
+
+def init_students():
+    # 이름, 학반
+    with open(f"{basedir}/students.csv", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        for row in spamreader:
+            name, class_code = row
+            student = Student(name, class_code)
+            db.session.add(student)
+
+        db.session.commit()
+
+
+# db.create_all()
+
+# init_students()
+# init_personalities()
+# init_jobs()
+# init_celebs()
+# init_problems()
