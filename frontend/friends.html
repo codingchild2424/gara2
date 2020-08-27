@@ -36,20 +36,6 @@
             <div class='friends-title mt-3 mb-3'><b>나와 같은 유형의 친구들</b></div>
             <div class='friends-list ml-2 mr-2 '>
                 <div class="row">
-                    <!-- 예시
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>이웅기</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>최준영</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>엄주홍</div>
-                    </div>
-                    <div class="w-100"></div> -->
                   </div>
             </div>
         </div>
@@ -64,7 +50,7 @@
         client.onreadystatechange = function () {
             var jsontext = client.responseText;
             var jsonobject = JSON.parse(jsontext);
-            var studentlist = jsonobject.students
+            var studentlist = jsonobject.students;
 
             var addingstring = '';
             for (i=0; i<studentlist.length; i++){
@@ -72,7 +58,7 @@
                     var name = studentlist[i].name;
                     var pic = studentlist[i].pic;
                     var type = studentlist[i].type;
-                    var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div><div class='friend-type'>"+type+"</div></div>";
+                    var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div>";
                     if(i%3 == 2){
                         profilestring += "<div class='w-100'></div>";
                     };
