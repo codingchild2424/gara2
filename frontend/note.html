@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = localStorage.getItem('name');
+        var class_code = localStorage.getItem('class_code');
+
+        var resource = class_code + "/" + name;
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/' + resource,
+            responseType: 'json'
+        }).then(function (response) {
+            console.log(response.data);
+        });
+
+        // 내 결과 버튼 링크
+        document.querySelector(".my-result").innerHTML = '<a class="nav-link active" href="http://localhost:8080/result/' + class_code + '/' + name + '">내 결과</a>';
+
+        // 친구들 결과 버튼 링크
+        document.querySelector(".class-result").innerHTML = '<a class="nav-link" href="http://localhost:8080/result/' + class_code + '">친구들 결과</a>';
+
+        // OOO님의 MBTI 성격유형은
+        document.querySelector('.type-heading').innerHTML = name + '님의 MBTI 성격유형은';
+
+
+
+
+    </script>
+</body>
+
+</html>

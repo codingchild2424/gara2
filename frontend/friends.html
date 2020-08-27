@@ -12,13 +12,13 @@
 <body>
     <ul class="nav justify-content-end nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#">MBTI 테스트</a>
+            <a class="nav-link" href="http://localhost:8080/start.html">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="result.html">내 결과</a>
+            <a class="nav-link active" href="http://localhost:8080/result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="http://localhost:8080/class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
@@ -58,7 +58,7 @@
                     var name = studentlist[i].name;
                     var pic = studentlist[i].pic;
                     var type = studentlist[i].type;
-                    var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div>";
+                    var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div></div>";
                     if(i%3 == 2){
                         profilestring += "<div class='w-100'></div>";
                     };

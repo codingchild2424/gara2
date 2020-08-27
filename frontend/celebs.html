@@ -12,13 +12,13 @@
 <body>
     <ul class="nav justify-content-end nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#">MBTI 테스트</a>
+            <a class="nav-link" href="http://localhost:8080/start.html">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="result.html">내 결과</a>
+            <a class="nav-link active" href="http://localhost:8080/result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="http://localhost:8080/class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
@@ -64,8 +64,9 @@
         client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/celebs.json');
         client.onreadystatechange = function () {
             var jsontext = client.responseText;
+        
             var jsonobject = JSON.parse(jsontext);
-            var celeblist = jsonobject.celebs
+            var celeblist = jsonobject.celebs;
 
             var addingstring = '';
             for (i=0; i<celeblist.length; i++){
@@ -83,6 +84,7 @@
 
             var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
             addingstring += tail.repeat(3-(celeblist.length)%3);
+            
             document.querySelector(".row").innerHTML = addingstring;
         }
         client.send()

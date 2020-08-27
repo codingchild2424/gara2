@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,21 +10,23 @@
     <link rel="stylesheet" href="main.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
+
 <body>
     <ul class="nav justify-content-end nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#">MBTI 테스트</a>
+            <a class="nav-link" href="http://localhost:8080/start.html">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="result.html">내 결과</a>
+            <a class="nav-link active" href="http://localhost:8080/result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="http://localhost:8080/class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
         <div class='profile-pic'>
-            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진" width=75px height=75px>
+            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진"
+                width=75px height=75px>
         </div>
     </div>
     <div class='type mb-3 ml-4 mr-4 text-center'>
@@ -36,46 +39,8 @@
             <div class='friends-title mt-3 mb-3'><b>우리 반 친구들의 성격유형</b></div>
             <div class='friends-list ml-2 mr-2 '>
                 <div class="row">
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>이웅기</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>최준영</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>엄주홍</div>
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>이경록</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>이재용</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>엄주홍</div>
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>이은서</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>최서연</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>최욱명</div>
-                    </div>
-                    <div class="w-100"></div>
-                  </div>
+
+                </div>
             </div>
 
         </div>
@@ -93,28 +58,35 @@
             var studentlist = jsonobject.students
 
             var addingstring = '';
-            for (i=studentlist.length-1; i>=0; i--){
+            for (i = studentlist.length - 1; i >= 0; i--) {
                 var name = studentlist[i].name;
                 var pic = studentlist[i].pic;
                 var type = studentlist[i].type;
-                var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div><div class='friend-type'>"+type+"</div></div>";
-                if(i%3 == 2){
+                var profilestring = '<div class="col"><img src=' + pic + " class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>" + name + "</div><div class='friend-type'>" + type + "</div></div>";
+                if (i % 3 == 2) {
                     profilestring += "<div class='w-100'></div>";
                 };
                 addingstring += profilestring;
             };
 
             var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
-            addingstring += tail.repeat(3-(studentlist.length)%3);
+            addingstring += tail.repeat(3 - (studentlist.length) % 3);
             document.querySelector(".row").innerHTML = addingstring;
         }
         client.send()
     </script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
 </body>
+
 </html>
