@@ -83,5 +83,57 @@
     <div class='back text-center mb-5'>
         <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
     </div>
+
+    <script>
+        var jsonarray = [
+            {
+                "name": "이재용1",
+                "class": 1,
+                "type": "INFJ",
+                "pic": "https://i.imgur.com/ScN6few.png"
+            },
+            {
+                "name": "이재용2",
+                "class": 2,
+                "type": "ENFJ",
+                "pic": "https://i.imgur.com/3baz8Dt.png"
+            },
+            {
+                "name": "이재용3",
+                "class": 3,
+                "type": "ISFJ",
+                "pic": "https://i.imgur.com/BataZQ0.png"
+            },
+            {
+                "name": "이재용4",
+                "class": 4,
+                "type": "INTJ",
+                "pic": "https://i.imgur.com/bxfZkVX.png"
+            },
+            {
+                "name": "이재용5",
+                "class": 5,
+                "type": "INFP",
+                "pic": "https://i.imgur.com/QmRY96X.png"
+            }
+        ]
+        var addingstring = '';
+        for (i=jsonarray.length-1; i>=0; i--){
+            var name = jsonarray[i].name;
+            var pic = jsonarray[i].pic;
+            var type = jsonarray[i].type;
+            var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div><div class='friend-type'>"+type+"</div></div>";
+            if(i%3 == 2){
+                profilestring += "<div class='w-100'></div>";
+            };
+            addingstring += profilestring;
+        }
+        var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
+        addingstring += tail.repeat(3-(jsonarray.length)%3);
+        console.log(addingstring);
+        document.querySelector(".row").innerHTML = addingstring;
+    </script>
+    
+
 </body>
 </html>

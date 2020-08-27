@@ -15,10 +15,10 @@
             <a class="nav-link" href="#">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="result.html">내 결과</a>
+            <a class="nav-link active" href="result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
@@ -33,25 +33,24 @@
         </div>
         <!-- 여기까지 동일. inheritance 가능? -->
         <div class='jobs-title mt-3 mb-3'><b>나와 같은 유형에 잘 맞는 직업</b></div>
-        <div class='jobs-category'>
-            <div class='jobs-category-title text-left'><b>Health Care</b></div>
-            <div class='jobs-category-content text-left'>
-                <ul class='border-bottom'>
-                    <li><a href="http://www.truity.com/career-profile/physical-therapist">Physical Therapist</a></li>
-                    <li><a href="http://www.truity.com/career-profile/health-educator">Public Health Educator</a></li>
-                    <li><a href="http://www.truity.com/career-profile/physician-or-surgeon">Family Physician</a></li>
-                    <li><a href="http://www.truity.com/career-profile/occupational-therapist">Occupational Therapist</a></li>
-                    <li><a href="http://www.truity.com/career-profile/physician-or-surgeon">Psychiatrist</a></li>
-                    <li><a href="http://www.truity.com/career-profile/physician-assistant">Physician Assistant</a></li>
-                    <li><a href="http://www.truity.com/career-profile/massage-therapist">Massage Therapist</a></li>
-                    <li><a href="http://www.truity.com/career-profile/dietitian-or-nutritionist">Nutritionist</a></li>
-                    <li><a href="http://www.truity.com/career-profile/medical-scientist">Medical Researcher</a></li>
-                </ul>
-            </div>
+        <div class='jobs-content'>
+            
         </div>
     </div>
     <div class='back text-center mb-5'>
         <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
     </div>
+
+
+    <script>
+        var client = new XMLHttpRequest();
+        client.open('GET', '/test2.txt');
+        client.onreadystatechange = function() {
+            console.log(client.responseText);
+        }
+        client.send();
+
+
+    </script>
 </body>
 </html>

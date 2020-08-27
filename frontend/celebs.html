@@ -15,10 +15,10 @@
             <a class="nav-link" href="#">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="result.html">내 결과</a>
+            <a class="nav-link active" href="result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
@@ -36,6 +36,7 @@
             <div class='friends-title mt-3 mb-3'><b>나와 같은 유형의 유명인</b></div>
             <div class='friends-list ml-2 mr-2 '>
                 <div class="row">
+                    <!-- 예시
                     <div class="col">
                         <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
                         <div class='friend-name'>마틴 루터 킹</div>
@@ -48,33 +49,7 @@
                         <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
                         <div class='friend-name'>테레사 수녀</div>
                     </div>
-                    <div class="w-100"></div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>니콜 키드먼</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>괴테</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>모건 프리먼</div>
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>레이디 가가</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>칼 융</div>
-                    </div>
-                    <div class="col">
-                        <img src="https://i.stack.imgur.com/l60Hf.png" class='friend-pic circle-img rounded-circle img-responsive ' alt="프로필 사진" width=60px height=60px>
-                        <div class='friend-name'>노엄 촘스키</div>
-                    </div>
-                    <div class="w-100"></div>
+                    <div class="w-100"></div> -->
                   </div>
             </div>
 
@@ -83,5 +58,53 @@
     <div class='back text-center mb-5'>
         <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
     </div>
+    <script>
+        var jsonarray = [
+            {
+                "name": "이재용1",
+                "class": 1,
+                "type": "INFJ",
+                "pic": "https://i.imgur.com/ScN6few.png"
+            },
+            {
+                "name": "이재용2",
+                "class": 2,
+                "type": "ENFJ",
+                "pic": "https://i.imgur.com/3baz8Dt.png"
+            },
+            {
+                "name": "이재용3",
+                "class": 3,
+                "type": "ISFJ",
+                "pic": "https://i.imgur.com/BataZQ0.png"
+            },
+            {
+                "name": "이재용4",
+                "class": 4,
+                "type": "INTJ",
+                "pic": "https://i.imgur.com/bxfZkVX.png"
+            },
+            {
+                "name": "이재용5",
+                "class": 5,
+                "type": "INFP",
+                "pic": "https://i.imgur.com/QmRY96X.png"
+            }
+        ]
+        var addingstring = '';
+        for (i=jsonarray.length-1; i>=0; i--){
+            var name = jsonarray[i].name;
+            var pic = jsonarray[i].pic;
+            var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div></div>";
+            if(i%3 == 2){
+                profilestring += "<div class='w-100'></div>";
+            };
+            addingstring += profilestring;
+        }
+        var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
+        addingstring += tail.repeat(3-(jsonarray.length)%3);
+        console.log(addingstring);
+        document.querySelector(".row").innerHTML = addingstring;
+    </script>
 </body>
 </html>
