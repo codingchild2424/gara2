@@ -1,4 +1,4 @@
-[
+{"students":[
     {
         "name": "이재용1",
         "class": 1,
@@ -29,4 +29,4 @@
         "type": "INFP",
         "pic": "https://i.imgur.com/QmRY96X.png"
     }
-]
+]}

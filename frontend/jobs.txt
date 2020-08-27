@@ -1,4 +1,5 @@
-{[
+{
+    "jobs": [
         {
             "name": "소방관",
             "group": "ISTJ",
