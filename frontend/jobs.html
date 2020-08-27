@@ -111,8 +111,9 @@
 
     <script>
         var client = new XMLHttpRequest();
-        client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/test2.txt');
+        client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/jobs.txt');
         client.onreadystatechange = function () {
+            console.log(client.responseText)
             var jsonobject = JSON.parse(client.responseText);
             console.log(jsonobject)
         }
