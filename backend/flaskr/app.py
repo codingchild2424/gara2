@@ -91,7 +91,7 @@ class Student(db.Model):
     class_code = db.Column(db.Integer, nullable=False)
     personality_id = db.Column(db.Integer, db.ForeignKey("personalities.id"))
 
-    def __init__(self, name, class_code, personality_id):
+    def __init__(self, name, class_code, personality_id=None):
         self.name = name
         self.class_code = class_code
         self.personality_id = personality_id
@@ -101,7 +101,7 @@ class Student(db.Model):
         data = {
             "name": self.name,
             "class_code": self.class_code,
-            "group": self.personality.group,
+            "group": self.personality.group if self.personality != None else "",
         }
         return json.dumps(data, ensure_ascii=False)
 
