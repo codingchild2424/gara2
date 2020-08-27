@@ -12,7 +12,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="main.css" type="text/css">
-    
+
     <title>MBTI: 나와 같은 유형의 친구들</title>
 
     <style type="text/css">
@@ -82,68 +82,185 @@
 ">
             <div style="border: 6px solid #CFEB70;">
                 <div class="row">
-                    <div class="col-2 nowrap" style="margin-top: 1rem; margin-right: 1.5rem; font-size: 1.6em;" id="userName">
-                        이웅기
+                    <div class="col-2">
+                        <div class="nowrap" style="margin-top: 1rem; margin-right: 1.5rem; font-size: 1.6em;" id="userName">
+                        </div>
                     </div>
+
                     <div class="progress active" style="margin-top: 1rem; height: 3em; width: 60%;">
-                        <div class="progress-bar active" role="progressbar" id="progressBar" style="width:0%" aria-valuenow="0" aria-valuemin="0"
+
+                        <div class="progress-bar active" role="progressbar" id="progressBar" style="width:0%; height: 100%;" aria-valuenow="0" aria-valuemin="0"
                              aria-valuemax="100"><p style="font-size: 1.4em;">0%</p></div>
                     </div>
+
+
                     <div class="col-2" style="margin-top: -1rem;">
                         <img src="https://image.flaticon.com/icons/svg/326/326314.svg" alt="badge" style="height: 4rem;">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container" style="font-family: 'GmarketSansMedium'; background-color: #DEF19D;">
+    </div>
+    <div class="container" style="font-family: 'GmarketSansMedium'; background-color: #DEF19D;">
 
 
-            <div class="row justify-content-center">
-                <div class="card mx-auto" style="width: 80%;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        border: 4px solid #CFEB70;">
-                    <div class="card-body mx-auto">
-                        <script>
-                            t1, t2 = false;
-                        </script>
-                        <p class="card-text h3" id="question">나는 새학기 첫날</p>
+        <div class="row justify-content-center">
+            <div class="card mx-auto" style="width: 80%; margin-top: 2rem; margin-bottom: 2rem; border: 4px solid #CFEB70;">
+                <div class="card-body mx-auto">
+                    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                    <script>var t1, t2 = false;
+                        var questionNumber = 1;
+                        function add() {
+                            t1 = true;
+                            regionScore += 1;
+                        }
+
+                        function minus() {
+                            t2 = true;
+                            regionScore = regionScore - 1;
+                        }
+                        axios({
+
+                            method: 'get',
+                            url: 'http://localhost:5000/question/' + questionNumber,
+                            responseType: 'json'
+                        })
+                            .then(function (response) {
+                                console.log(response.data)
+                            });</script>
+                    <p class="card-text h3" id="question">나는 새학기 첫날</p>
 
 
-                        <div align="center">
-                            <button class="btn first" id="firstAnswer" onclick="add()"><p class="h4">처음보는 아이들과 어색하지만 그래도 쉽게 말을 걸며 친해질 수 있다.</p></button>
-
-
-                            <button class="btn second" id="secondAnswer" onclick="minus()"><p class="h4">내가 먼저 말을 걸기 힘들다. 마음이 매우 불편하다.</p></button>
-                        </div>
-
+                    <div align="center">
+                        <button class="btn first" id="firstAnswer" onclick="add()"><p class="h4">처음보는 아이들과 어색하지만 그래도 쉽게 말을 걸며 친해질 수 있다.</p></button>
+                        <button class="btn second" id="secondAnswer" onclick="minus()"><p class="h4">내가 먼저 말을 걸기 힘들다. 마음이 매우 불편하다.</p></button>
                     </div>
-                    <div class="row justify-content-center">
-                        <button class="btn next btn-lg active" role="button"  aria-pressed="true" id="nextButton">다음</button>
-                        <a href="http://70571de64193.ngrok.io/result.html" class="btn next btn-lg" role="button" aria-pressed="true" id="nextStage" >내 유형은?</a>
-                    </div>
-                    
+
+                </div>
+                <div class="row justify-content-center">
+                    <button class="btn next btn-lg active" role="button" aria-pressed="true" id="nextButton">다음</button>
+                    <script>
+
+                        nextButton.addEventListener('click', function () {
+                            localStorage.setItem("regionScore", regionScore.value);
+                            console.log(regionScore);
+
+
+                            $('#progressBar').addClass('progress-bar-striped active');
+
+                            if ((t1 == true) || (t2 == true)) {
+                                t1 = false;
+                                t2 = false;
+
+                                questionNumber += 1;
+                                percent += 20;
+                                $('#progressBar').css('width', percent + '%');
+                                $('#progressBar').html(percent + '%');
+
+
+                                axios({
+                                    method: 'get',
+                                    url: 'http://localhost:5000/question/' + questionNumber,
+                                    responseType: 'json'
+                                })
+                                    .then(function (response) {
+                                        console.log(response.data)
+                                    });
+
+                                if (percent >= 100) {
+                                    $('#progressBar').removeClass('progress-bar-striped active');
+                                    $('#progressBar').css('width', '0%');
+                                    if (regionNumber < 4) {
+                                        regionNumber += 1;
+                                        questionNumber = regionNumber * 5;
+                                        if (regionNumber == 0) {
+                                            regionScore1 = regionScore;
+                                            if (regionScore1 > 0) {
+                                                myPersonality = 'S';
+                                            } else {
+                                                myPersonality = 'N';
+                                            }
+                                            console.log(myPersonality);
+                                        } else if (regionNumber == 1) {
+                                            regionScore2 = regionScore;
+                                            if (regionScore2 > 0) {
+                                                myPersonality = myPersonality + 'E';
+                                            } else {
+                                                myPersonality = myPersonality + 'I';
+                                            }
+                                            console.log(myPersonality);
+                                        } else if (regionNumber == 2) {
+                                            regionScore3 = regionScore;
+                                            if (regionScore3 > 0) {
+                                                myPersonality = myPersonality + 'T';
+                                            } else {
+                                                myPersonality = myPersonality + 'F';
+                                            }
+                                            console.log(myPersonality);
+                                        } else if (regionNumber == 3) {
+                                            regionScore4 = regionScore;
+                                            if (regionScore3 > 0) {
+                                                myPersonality = myPersonality + 'J';
+                                            } else {
+                                                myPersonality = myPersonality + 'P';
+                                            }
+                                            console.log(myPersonality);
+                                        }
+                                        regionScore = 0;
+
+                                    } else {
+                                        $('#nextButton').css('display', 'none');
+                                        $('#nextStage').css('display', 'inline');
+                                        $('#nextStage').addClass('active');
+
+                                        var personality = {
+
+                                            "name": name,
+                                            "personality": myPersonality
+
+
+                                        };
+
+                                        axios({
+                                            method: 'post',
+                                            url: 'http://localhost:5000/student',
+                                            data: personality
+                                        });
+
+                                    }
+
+                                } else {
+                                    alert("한 쪽을 선택해주세요.");
+                                }
+
+                            });
+                        }
+                    </script>
+
+                    <a href="http://localhost:8080/result" class="btn next btn-lg" role="button" aria-pressed="true" id="nextStage">내 유형은?</a>
+
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class='footer container'>
-            <div class="container">
-                주식회사 이웅기 대표 (비영리 단체)
-                <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
-            </div>
-            <div class="container">
-                <span><a href="mailto:" target="_blank"></a></span>
-                <br>
-                <span> © 2020 이웅기. All rights reserved. </span>
-            </div>
+    <div class='footer container'>
+        <div class="container">
+            주식회사 이웅기 대표 (비영리 단체)
+            <span><a href="tel:010-1234-1234" target="_blank">010-1234-1234</a></span>
+        </div>
+        <div class="container">
+            <span><a href="mailto:" target="_blank"></a></span>
+            <br>
+            <span> © 2020 이웅기. All rights reserved. </span>
         </div>
     </div>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="script3.js"></script>
+    <script type="text/javascript" src="script2.js"></script>
 </body>
 </html>
