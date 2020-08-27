@@ -172,7 +172,28 @@
                 <a href="http://localhost:8080/question" class="btn next btn-lg active col-md" role="button" aria-pressed="true" style="margin-bottom:20px; color: white;" onclick="store()">시작하기</a>
 
             </div>
+            <script>
+                function store() {
+                    var class_code = document.getElementById("classCode").value;
+                    var name = document.getElementById("name").value;
 
+                    localStorage.setItem("class_code", class_code);
+                    localStorage.setItem("name", name);
+
+                    var user = {
+                        "name": name,
+                        "class_code": class_code
+                    };
+
+                    console.log(user);
+
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/student',
+                        data: user
+                    });
+                }
+</script>
 
         </div>
     </div>
