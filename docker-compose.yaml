@@ -5,7 +5,7 @@ services:
     image: ${FLASK_IMAGE}
     build:
       context: ./backend
-      dockerfile: ./backend/dockerfiles/dockerfile.flask
+      dockerfile: ./dockerfiles/dockerfile.flask
     ports:
       - 5000:5000
 
@@ -13,7 +13,7 @@ services:
     image: ${MINIO_IMAGE}
     build:
       context: ./backend
-      dockerfile: ./backend/dockerfiles/dockerfile.minio
+      dockerfile: ./dockerfiles/dockerfile.minio
     environment:
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
@@ -26,6 +26,6 @@ services:
     image: ${NGINX_IMAGE}
     build:
       context: ./frontend
-      dockerfile: ./frontend/Dockerfile
+      dockerfile: ./Dockerfile
     ports: 
         - 8080:80
