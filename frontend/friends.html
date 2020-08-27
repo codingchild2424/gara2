@@ -58,6 +58,36 @@
         <input type="button" value="◀ 돌아가기" onClick= 'history.back(-1)' class='btn btn-secondary'>
     </div>
 
+
+
+    <script>
+        var client = new XMLHttpRequest();
+        client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/students.json');
+        client.onreadystatechange = function () {
+            var jsontext = client.responseText;
+            var jsonobject = JSON.parse(jsontext);
+            var studentlist = jsonobject.students
+
+            var addingstring = '';
+            for (i=0; i<studentlist.length; i++){
+                if (studentlist[i].type == 'INFJ'){
+                    var name = studentlist[i].name;
+                    var pic = studentlist[i].pic;
+                    var type = studentlist[i].type;
+                    var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div><div class='friend-type'>"+type+"</div></div>";
+                    if(i%3 == 2){
+                        profilestring += "<div class='w-100'></div>";
+                    };
+                    addingstring += profilestring;
+                }
+            };
+
+            var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
+            addingstring += tail.repeat(3-(studentlist.length)%3);
+            document.querySelector(".row").innerHTML = addingstring;
+        }
+        client.send()
+    </script>
     <script>
         var jsonarray = [
             {
