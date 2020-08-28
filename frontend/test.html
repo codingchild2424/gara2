@@ -4,29 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI: 나와 같은 유형의 추천 직업</title>
+    <title>MBTI: 나의 성격유형</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        
+    </style>
 </head>
 
 <body>
     <ul class="nav justify-content-end nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#">MBTI 테스트</a>
+            <a class="nav-link" href="http://localhost:8080/start.html">MBTI 테스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="result.html">내 결과</a>
+            <a class="nav-link active" href="http://localhost:8080/result.html">내 결과</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="class.html">친구들 결과</a>
+            <a class="nav-link" href="http://localhost:8080/class.html">친구들 결과</a>
         </li>
     </ul>
     <div class='profile mt-3 mb-3 text-center'>
         <div class='profile-pic'>
-            <img src="https://i.stack.imgur.com/l60Hf.png" class='circle-img rounded-circle img-responsive' alt="프로필 사진"
-                width=75px height=75px>
+            <img src="https://ww.namu.la/s/93cca44a7b32d59c948357fc8d35159479efff1c4a588889994017fbda4840e9c7f275ff83bb81df510376d5c3593fae5ecef348fd2cdd7abf7a9ed9386ee5e26b3672b818de183d42c66015d78775bef23a7e7cc033b0788e11b9cb3f8f9f026b10d548d588f464225ad28eccedcc20" class='circle-img rounded-circle img-responsive' alt="프로필 사진" width=75px height=75px>
         </div>
     </div>
     <div class='type mb-3 ml-4 mr-4 text-center'>
@@ -34,43 +36,46 @@
         <div class='type-name mb-2 border-bottom'>
             <h3>INFJ</h3>
         </div>
-        <div class='jobs-title mt-3 mb-3'><b>나와 같은 유형에 잘 맞는 직업</b></div>
-        <div class="bd-example">
-            <div class="accordion" id="accordionExample">
-
-            </div>
-        </div>
+        <div class='type-description text-justify'>&nbsp;&nbsp;선의의 옹호자형은 가장 흔치 않은 성격 유형으로 인구의 채 1%도 되지 않습니다. 그럼에도 불구하고
+            나름의 고유 성향으로 세상에서 그들만의 입지를 확고히 다집니다. 이들 안에는 깊이 내재한 이상향이나 도덕적 관념이 자리하고 있는데, 다른 외교형 사람과 다른 점은 이들은 단호함과 결단력이 있다는
+            것입니다. 바라는 이상향을 꿈꾸는데 절대 게으름 피우는 법이 없으며, 목적을 달성하고 지속적으로 긍정적인 영향을 미치고자 구체적으로 계획을 세워 이행해 나갑니다.</div>
     </div>
-    <div class='back text-center mb-5'>
-        <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
+    <div class='info mb-3 text-center'>
+        <input type="button" value="INFJ 친구들" onClick="location.href='http://localhost:8080/friends.html'" class='btn btn-primary'>
+        <input type="button" value="INFJ 유명인" onClick="location.href='http://localhost:8080/celebs.html'" class='btn btn-primary'>
+        <input type="button" value="INFJ 추천직업" onClick="location.href='http://localhost:8080/jobs.html'" class='btn btn-primary'>
     </div>
-
+    <div class='next text-center mb-5'>
+        <input type="button" value="우리 반 친구들의 MBTI 유형 확인하기 ▶" onClick="location.href='class.html'"
+            class='btn btn-secondary'>
+    </div>
 
     <script>
-        var client = new XMLHttpRequest();
-        client.open('GET', 'https://raw.githubusercontent.com/codingchild2424/gara2/master/frontend/jobs.json');
-        var jsontext = ''
-        client.onreadystatechange = function () {
-            jsontext = client.responseText
-            console.log(jsontext);
-            
-        };
-        var jsonobject = JSON.parse(jsontext);
-        console.log(jsonobject);
-        client.send();
+        // var name = localStorage.getItem('name');
+        // var class_code = localStorage.getItem('class_code');
+        var name = '강현구'
+        var class_code = 12345
+
+        var resource = class_code + "/" + name;
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/' + resource,
+            responseType: 'json'
+        })
+            .then(function (response) {
+                // console.log(response.data);
+                var jsonstring = response.data;
+                var jsonobject = JSON.parse(jsonstring);
+                console.log(jsonstring.name);
+                console.log(jsonstring.class_code);
+            });
     </script>
 
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
