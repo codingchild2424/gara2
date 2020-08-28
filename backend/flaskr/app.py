@@ -72,7 +72,12 @@ def get_groups():
     return groups  # 16가지 그룹 정보
 
 
-@app.route("/picture/<class_code>/<name>")
+@app.route("/survey/<survey_id>")
+def get_survey(survey_id):
+    survey = Survey.query.get(survey_id)
+    return survey.jsonify()
+
+
 def get_picture_url(name, class_code):
     object_name = f"{class_code}/{name}.jpg"
     picture_url = minio.presigned_get_object(
@@ -102,17 +107,18 @@ class Student(db.Model):
             "name": self.name,
             "class_code": self.class_code,
             "group": self.personality.group if self.personality != None else "",
+            "picture_url": get_picture_url(self.name, self.class_code),
         }
         return json.dumps(data, ensure_ascii=False)
 
 
-class Problem(db.Model):
+class Survey(db.Model):
 
-    __tablename__ = "problems"
+    __tablename__ = "surveys"
 
     id = db.Column(db.Integer, primary_key=True)
     context = db.Column(db.Text)
-    options = db.relationship("Option", backref="problem", lazy="dynamic")
+    options = db.relationship("Option", backref="survey", lazy="dynamic")
 
     def __init__(self, context):
         self.context = context
@@ -130,12 +136,12 @@ class Option(db.Model):
     __tablename__ = "options"
 
     id = db.Column(db.Integer, primary_key=True)
-    problem_id = db.Column(db.Integer, db.ForeignKey("problems.id"))
+    survey_id = db.Column(db.Integer, db.ForeignKey("surveys.id"))
     context = db.Column(db.Text)
     personality = db.Column(db.Text)
 
-    def __init__(self, problem_id, context, personality):
-        self.problem_id = problem_id
+    def __init__(self, survey_id, context, personality):
+        self.survey_id = survey_id
         self.context = context
         self.personality = personality
 
@@ -282,7 +288,7 @@ def init_personalities():
         db.session.commit()
 
 
-def init_problems():
+def init_surveys():
     # 문제, 선택지1, 선택지2, 선택지1 성향, 선택지2 성향
     opt_group = {
         "1": "E",
@@ -294,11 +300,11 @@ def init_problems():
         "7": "J",
         "8": "P",
     }
-    with open(f"{basedir}/problems.csv", newline="") as csvfile:
+    with open(f"{basedir}/surveys.csv", newline="") as csvfile:
         spamreader = csv.reader(csvfile, delimiter=",", quotechar="|")
         for idx, row in enumerate(spamreader):
-            problem_context, option_1, option_2, option1_group, option2_group = row
-            problem = Problem(problem_context)
+            survey_context, option_1, option_2, option1_group, option2_group = row
+            survey = Survey(survey_context)
 
             opt1 = opt_group[option1_group]
             opt2 = opt_group[option2_group]
@@ -306,7 +312,7 @@ def init_problems():
             option1 = Option(idx + 1, option_1, opt1)
             option2 = Option(idx + 1, option_2, opt2)
 
-            db.session.add(problem)
+            db.session.add(survey)
             db.session.add(option1)
             db.session.add(option2)
 
@@ -331,4 +337,4 @@ def init_students():
 # init_personalities()
 # init_jobs()
 # init_celebs()
-# init_problems()
+# init_surveys()
