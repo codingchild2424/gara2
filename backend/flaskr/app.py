@@ -126,7 +126,9 @@ class Survey(db.Model):
     def jsonify(self):
         data = {
             "context": self.context,
-            "options": [option.context for option in self.options],
+            "options": [
+                (option.personality, option.context) for option in self.options
+            ],
         }
         return json.dumps(data, ensure_ascii=False)
 
