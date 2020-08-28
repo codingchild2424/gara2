@@ -9,7 +9,7 @@ services:
     ports:
       - 5000:5000
     # volumes:
-    #   - ./backend/flaskr/sqlite:/root/sqlite
+    #   - ./flaskr/sqlite:/root/sqlite
 
   minio:
     image: ${MINIO_IMAGE}
@@ -22,7 +22,7 @@ services:
     ports:
       - 9000:9000
     # volumes:
-    #   - ./backend/pictures:/data
+    #   - ./pictures/:/data
 
   web:
     image: ${NGINX_IMAGE}
