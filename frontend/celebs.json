@@ -1,32 +1,37 @@
 {"celebs":[
     {
-        "name": "재용1",
-        "class": 1,
+        "name": "김이나",
         "type": "INFJ",
-        "pic": "https://i.imgur.com/ScN6few.png"
+        "pic": "https://w.namu.la/s/cc9acbb818c59833d42745390870a93be306bfebebc389169c201c1aec7125b2f7ed85e46d9c98e175fe29c80d8094d8a2d74e0f5e7404e3c1fcbfb793f4b195eeb6c9a77f407b263c7d7bfa4ed0dc91a9ba2b5fecf212bf0923741904e1eb23ba5b8ef9f58f857e1208ebd4089ec42e"
     },
     {
-        "name": "재용2",
-        "class": 2,
-        "type": "ENFJ",
-        "pic": "https://i.imgur.com/3baz8Dt.png"
-    },
-    {
-        "name": "재용3",
-        "class": 3,
-        "type": "ISFJ",
-        "pic": "https://i.imgur.com/BataZQ0.png"
-    },
-    {
-        "name": "재용4",
-        "class": 4,
-        "type": "INTJ",
-        "pic": "https://i.imgur.com/bxfZkVX.png"
-    },
-    {
-        "name": "재용5",
-        "class": 5,
+        "name": "태연",
         "type": "INFJ",
-        "pic": "https://i.imgur.com/QmRY96X.png"
+        "pic": "https://ww.namu.la/s/e228c89a7e405277f0e3e59cdc82cd50585bd8380c46d3654f327fc7f7940683f5c4dc51ffa051969247957c65fc51c5272e8ce382f04b37a666cd173df186c1c46985bab836d78bb82dbe8f03b8bd7aed18a05fc7049847c1d13a1bbf8629187676fbfc6efafd94ef8d21337dad8c29"
+    },
+    {
+        "name": "솔라",
+        "type": "INFJ",
+        "pic": "https://w.namu.la/s/090917ac64e6bba7cbe9260bd7a010fb27423346e3f0196deb049d9ab9ebe12e46793d2d7eb1ab1c76959a38d91545529cf6af86eacfb02d24fd1dd98945460caee27f7a4852b66bed9291d2257cd62c9c1efe372e697637204baa7db5698292796c5cce00e6f4d3d2c8af6c264d9691"
+    },
+    {
+        "name": "차은우",
+        "type": "INFJ",
+        "pic": "https://w.namu.la/s/08665916238274d7da494a612b2bdf6838fad12dd0a8e4055e8cd09570431b813ecc2f4e56b1f32c9121400bbc7087e600671d094d1dc084e681e3003a0cfcefdfbd4d0d97cb44e1c8fd4f16abf56d02a9c16b05c1d43897f55b499496cfb72e7afa3486e9e02c0dbf034c8ad14d9ba9"
+    },
+    {
+        "name": "류수정",
+        "type": "INFJ",
+        "pic": "https://w.namu.la/s/8e5d9459142e1822b0758bf52113d4b5a2d28c893249dad1022b4295c8825427edc5560aab13009faea4104fb63471f8a8e4d62297af6e802ae2df36eb6fb4f5b2f7c4d2329bcd44929398cd91d1397c99be1fbdb66971d5671a567d08d756ea4e24f2407b7942b1248e2704184c3aa4"
+    },
+    {
+        "name": "카이(EXO)",
+        "type": "INFJ",
+        "pic": "https://ww.namu.la/s/93cca44a7b32d59c948357fc8d35159479efff1c4a588889994017fbda4840e9c7f275ff83bb81df510376d5c3593fae5ecef348fd2cdd7abf7a9ed9386ee5e26b3672b818de183d42c66015d78775bef23a7e7cc033b0788e11b9cb3f8f9f026b10d548d588f464225ad28eccedcc20"
+    },
+    {
+        "name": "혜림",
+        "type": "INFJ",
+        "pic": "https://w.namu.la/s/049d628f70d78b9dd0c9179ab3e961756e7570988648a43bc7233d9acc17fa7c3c700607844da7bb4480bd3e0c7a25c566f11a67d89274677a54f47423f1af8be37687f478497ade6ad5f83631dc6b680076a6ecfdc7ce145e003b794e704260"
     }
 ]}
