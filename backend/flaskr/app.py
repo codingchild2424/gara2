@@ -6,7 +6,7 @@ import dbclient, minioclient, json, csv, os
 app = Flask(__name__)
 CORS(app)
 db = dbclient.connect(app)
-minio = minioclient.connect()
+minio = minioclient.connect("minio")
 
 
 @app.route("/student", methods=(["POST"]))
@@ -78,6 +78,7 @@ def get_survey(survey_id):
     return survey.jsonify()
 
 
+@app.route("/picture/<class_code>/<name>")
 def get_picture_url(name, class_code):
     object_name = f"{class_code}/{name}.jpg"
     picture_url = minio.presigned_get_object(
@@ -107,7 +108,6 @@ class Student(db.Model):
             "name": self.name,
             "class_code": self.class_code,
             "group": self.personality.group if self.personality != None else "",
-            "picture_url": get_picture_url(self.name, self.class_code),
         }
         return json.dumps(data, ensure_ascii=False)
 
