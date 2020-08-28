@@ -57,13 +57,15 @@
             var celeblist = jsonobject.celebs;
 
             var addingstring = '';
+            var cnt = 0;
             for (i = 0; i < celeblist.length; i++) {
                 if (celeblist[i].type == 'INFJ') {
+                    cnt += 1;
                     var name = celeblist[i].name;
                     var pic = celeblist[i].pic;
                     var type = celeblist[i].type;
                     var profilestring = '<div class="col"><img src=' + pic + " class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>" + name + "</div><div class='friend-type'></div></div>";
-                    if (i % 3 == 2) {
+                    if (cnt % 3 == 0) {
                         profilestring += "<div class='w-100 mb-3'></div>";
                     };
                     addingstring += profilestring;
