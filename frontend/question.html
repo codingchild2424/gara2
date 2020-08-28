@@ -137,109 +137,111 @@
                     </div>
 
                 </div>
+
                 <div class="row justify-content-center">
                     <button class="btn next btn-lg active" role="button" aria-pressed="true" id="nextButton">다음</button>
-                    <script>
+                    <a href="http://localhost:8080/result" class="btn next btn-lg" role="button" aria-pressed="true" id="nextStage">내 유형은?</a>
+                </div>
+                <script>
 
-                        nextButton.addEventListener('click', function () {
-                            localStorage.setItem("regionScore", regionScore.value);
-                            console.log(regionScore);
+                    fucntion(percent){
 
-
-                            $('#progressBar').addClass('progress-bar-striped active');
-
-                            if ((t1 == true) || (t2 == true)) {
-                                t1 = false;
-                                t2 = false;
-
-                                questionNumber += 1;
-                                percent += 20;
-                                $('#progressBar').css('width', percent + '%');
-                                $('#progressBar').html(percent + '%');
+                    }
 
 
-                                axios({
-                                    method: 'get',
-                                    url: 'http://localhost:5000/question/' + questionNumber,
-                                    responseType: 'json'
-                                })
-                                    .then(function (response) {
-                                        console.log(response.data)
+                nextButton.addEventListener('click', function () {
+                        localStorage.setItem("regionScore", regionScore.value);
+                        console.log(regionScore);
+
+                        $('#progressBar').addClass('progress-bar-striped active');
+
+                        if ((t1 == true) || (t2 == true)) {
+                            t1 = false;
+                            t2 = false;
+
+                            questionNumber += 1;
+                            percent += 20;
+                            $('#progressBar').css('width', percent + '%');
+                            $('#progressBar').html(percent + '%');
+
+
+                            axios({
+                                method: 'get',
+                                url: 'http://localhost:5000/question/' + questionNumber,
+                                responseType: 'json'
+                            })
+                                .then(function (response) {
+                                    console.log(response.data)
+                                });
+
+                            if (percent >= 100) {
+                                $('#progressBar').removeClass('progress-bar-striped active');
+                                $('#progressBar').css('width', '0%');
+                                if (regionNumber < 4) {
+                                    questionNumber = regionNumber * 5;
+                                    if (regionNumber == 0) {
+                                        regionScore1 = regionScore;
+                                        if (regionScore1 > 0) {
+                                            myPersonality = 'S';
+                                        } else {
+                                            myPersonality = 'N';
+                                        }
+                                    } else if (regionNumber == 1) {
+                                        regionScore2 = regionScore;
+                                        if (regionScore2 > 0) {
+                                            myPersonality = myPersonality + 'E';
+                                        } else {
+                                            myPersonality = myPersonality + 'I';
+                                        }
+                                    } else if (regionNumber == 2) {
+                                        regionScore3 = regionScore;
+                                        if (regionScore3 > 0) {
+                                            myPersonality = myPersonality + 'T';
+                                        } else {
+                                            myPersonality = myPersonality + 'F';
+                                        }
+                                    } else if (regionNumber == 3) {
+                                        regionScore4 = regionScore;
+                                        if (regionScore3 > 0) {
+                                            myPersonality = myPersonality + 'J';
+                                        } else {
+                                            myPersonality = myPersonality + 'P';
+                                        }
+                                    }
+                                    regionNumber += 1;
+                                    console.log(myPersonality);
+                                    regionScore = 0;
+
+                                } else if (regionNumber >= 4) {
+                                    $('#nextButton').css('display', 'none');
+                                    $('#nextStage').css('display', 'inline');
+                                    $('#nextStage').addClass('active');
+
+                                    var personality = {
+
+                                        "name": name,
+                                        "personality": myPersonality
+
+
+                                    };
+
+                                    axios({
+                                        method: 'post',
+                                        url: 'http://localhost:5000/student',
+                                        data: personality
                                     });
 
-                                if (percent >= 100) {
-                                    $('#progressBar').removeClass('progress-bar-striped active');
-                                    $('#progressBar').css('width', '0%');
-                                    if (regionNumber < 4) {
-                                        regionNumber += 1;
-                                        questionNumber = regionNumber * 5;
-                                        if (regionNumber == 0) {
-                                            regionScore1 = regionScore;
-                                            if (regionScore1 > 0) {
-                                                myPersonality = 'S';
-                                            } else {
-                                                myPersonality = 'N';
-                                            }
-                                            console.log(myPersonality);
-                                        } else if (regionNumber == 1) {
-                                            regionScore2 = regionScore;
-                                            if (regionScore2 > 0) {
-                                                myPersonality = myPersonality + 'E';
-                                            } else {
-                                                myPersonality = myPersonality + 'I';
-                                            }
-                                            console.log(myPersonality);
-                                        } else if (regionNumber == 2) {
-                                            regionScore3 = regionScore;
-                                            if (regionScore3 > 0) {
-                                                myPersonality = myPersonality + 'T';
-                                            } else {
-                                                myPersonality = myPersonality + 'F';
-                                            }
-                                            console.log(myPersonality);
-                                        } else if (regionNumber == 3) {
-                                            regionScore4 = regionScore;
-                                            if (regionScore3 > 0) {
-                                                myPersonality = myPersonality + 'J';
-                                            } else {
-                                                myPersonality = myPersonality + 'P';
-                                            }
-                                            console.log(myPersonality);
-                                        }
-                                        regionScore = 0;
-
-                                    } else {
-                                        $('#nextButton').css('display', 'none');
-                                        $('#nextStage').css('display', 'inline');
-                                        $('#nextStage').addClass('active');
-
-                                        var personality = {
-
-                                            "name": name,
-                                            "personality": myPersonality
-
-
-                                        };
-
-                                        axios({
-                                            method: 'post',
-                                            url: 'http://localhost:5000/student',
-                                            data: personality
-                                        });
-
-                                    }
-
-                                } else {
-                                    alert("한 쪽을 선택해주세요.");
                                 }
 
-                            });
+
+                            } else {
+                                alert("한 쪽을 선택해주세요.");
+                            }
+
                         }
-                    </script>
 
-                    <a href="http://localhost:8080/result" class="btn next btn-lg" role="button" aria-pressed="true" id="nextStage">내 유형은?</a>
+                                        )</script>
 
-                </div>
             </div>
         </div>
     </div>
