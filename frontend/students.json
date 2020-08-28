@@ -3,32 +3,44 @@
     {
         "name": "웅기",
         "class": 1,
-        "type": "INFJ",
+        "type": "INFP",
         "pic": "https://w.namu.la/s/1632ab4f265976bf63eedba7fd846edab9aaec71e715d8b94fe9517a0fc0e0231c590f4179109a8fc675fcc327f35aa3d11655d1a4767e35cf3073794873446414c011f5f6ca75ef334b39a96240629c66c78d0aa17268eb0474814338d7d1a6e6851dcce8dca4889a84ef527150f29e"
     },
     {
         "name": "주홍",
         "class": 1,
-        "type": "INFJ",
+        "type": "ISFJ",
         "pic": "https://ww.namu.la/s/6132da06f7804b4e060b554daaa0eb6e9cd9ae29aeb16e95f8dff891170eeb673c9b6b8c90e0d0e8a9db4487c8cc9bbb4fd11dd7a277eacc129a6ac009f384a910eff8f9e0db58a94f74246030d1727a7769af9fdae896b55219845672b41d1d46948ec9b9f3cd94909e66c90e791397"
     },
     {
         "name": "준영",
         "class": 1,
-        "type": "INFJ",
+        "type": "INTP",
         "pic": "https://w.namu.la/s/08665916238274d7da494a612b2bdf6838fad12dd0a8e4055e8cd09570431b813ecc2f4e56b1f32c9121400bbc7087e600671d094d1dc084e681e3003a0cfcefdfbd4d0d97cb44e1c8fd4f16abf56d02a9c16b05c1d43897f55b499496cfb72e7afa3486e9e02c0dbf034c8ad14d9ba9"
     },
     
     {
         "name": "은서",
         "class": 1,
-        "type": "INFJ",
+        "type": "ENFJ",
         "pic": "https://ww.namu.la/s/5d904796bc9e3539dc126651811a5af6d2c5d96f2af56cd8b7007f8be7957b7a6aa8af9b6590035663852be3195a8eabcdc0ea2bef8350d0950484e83b7ce2ec134eef1cd91b3668e42a586124ffe696e8383657aed919ff272a3bac7ce6c34c"
     },
     {
         "name": "경록",
         "class": 1,
-        "type": "INFJ",
+        "type": "ENTJ",
         "pic": "https://w.namu.la/s/53a0e474dea614f2506d15d52a5fe6343507c10c3c844304ce69f3d2aad840629a9511e8987504ce7646ace6eb5d1ecf771ee67f45fbb12d1c3e380160e398ff6286e69a6d488dd15b00f27ca052d7518089f1733a31eceaeb20063f24b3a956ae04b475d118274c380728beec855427"
-    }
+    },
+    {
+        "name": "서연",
+        "class": 1,
+        "type": "INFJ",
+        "pic": "https://ww.namu.la/s/e228c89a7e405277f0e3e59cdc82cd50585bd8380c46d3654f327fc7f7940683f5c4dc51ffa051969247957c65fc51c5272e8ce382f04b37a666cd173df186c1c46985bab836d78bb82dbe8f03b8bd7aed18a05fc7049847c1d13a1bbf8629187676fbfc6efafd94ef8d21337dad8c29"
+    },
+    {
+        "name": "욱명",
+        "class": 1,
+        "type": "ESFJ",
+        "pic": "https://ww.namu.la/s/93cca44a7b32d59c948357fc8d35159479efff1c4a588889994017fbda4840e9c7f275ff83bb81df510376d5c3593fae5ecef348fd2cdd7abf7a9ed9386ee5e26b3672b818de183d42c66015d78775bef23a7e7cc033b0788e11b9cb3f8f9f026b10d548d588f464225ad28eccedcc20"
+    },
 ]}
