@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class='back text-center mb-5'>
-        <input type="button" value="◀ 돌아가기" onClick="history.back(-1);" class='btn btn-secondary'>
+        <input type="button" value="◀ 내 결과로 돌아가기" onClick="location.href='http://localhost:8080/result.html'" class='btn btn-secondary'>
     </div>
 
 
@@ -53,9 +53,9 @@
         client.onreadystatechange = function () {
             var jsontext = client.responseText;
             var jsonobject = JSON.parse(jsontext);
-            var joblist = jsonobject.jobs
+            var joblist = jsonobject.jobs;
 
-            var addingstr = ''
+            var addingstr = '';
 
             for (i = 0; i < joblist.length; i++) {
                 if (joblist[i].group == 'INFJ'){
@@ -74,9 +74,9 @@
                     addingstr += jobstr;
                     console.log(addingstr)
                     document.querySelector(".accordion").innerHTML = addingstr;
-                }
-            }
-        }
+                };
+            };
+        };
         client.send();
     </script>
 

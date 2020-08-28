@@ -54,23 +54,23 @@
 
             var addingstring = '';
             for (i=0; i<studentlist.length; i++){
-                if (studentlist[i].type == 'INFJ'){
+                if (studentlist[i].type == 'INFJ' && studentlist[i].class == 1){
                     var name = studentlist[i].name;
                     var pic = studentlist[i].pic;
                     var type = studentlist[i].type;
                     var profilestring = '<div class="col"><img src='+pic+" class='friend-pic circle-img rounded-circle img-responsive' alt='프로필 사진' width=60px height=60px><div class='friend-name'>"+name+"</div></div>";
                     if(i%3 == 2){
-                        profilestring += "<div class='w-100'></div>";
+                        profilestring += "<div class='w-100 mb-3'></div>";
                     };
                     addingstring += profilestring;
-                }
+                };
             };
 
             var tail = "<div class='col'><img src='' class='friend-pic circle-img rounded-circle img-responsive' alt='' width=60px height=60px><div class='friend-name'></div></div>";
             addingstring += tail.repeat(3-(studentlist.length)%3);
             document.querySelector(".row").innerHTML = addingstring;
-        }
-        client.send()
+        };
+        client.send();
     </script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
