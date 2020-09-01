@@ -2,7 +2,7 @@ import csv
 import os
 
 from flaskr import db
-from models.models import *
+from flaskr.models.models import *
 
 basedir = os.path.join(os.path.abspath(os.path.dirname(__file__)), "../csv")
 

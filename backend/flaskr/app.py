@@ -4,16 +4,16 @@ import os
 
 from flask import Flask, request
 
-from database import database
 from flaskr import app, db, minio
-from models.models import *
+from flaskr.database.database import *
+from flaskr.models.models import *
 
-db.create_all()
-database.init_students()
-database.init_surveys()
-database.init_personalities()
-database.init_celebs()
-database.init_jobs()
+# db.create_all()
+# database.init_students()
+# database.init_surveys()
+# database.init_personalities()
+# database.init_celebs()
+# database.init_jobs()
 
 
 @app.route("/student", methods=(["POST"]))
