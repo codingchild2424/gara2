@@ -5,15 +5,15 @@ import os
 from flask import Flask, request
 
 from flaskr import app, db, minio
-from flaskr.database.database import *
+from flaskr.database.initializer import *
 from flaskr.models.models import *
 
 # db.create_all()
-# database.init_students()
-# database.init_surveys()
-# database.init_personalities()
-# database.init_celebs()
-# database.init_jobs()
+# initializer.init_students()
+# initializer.init_surveys()
+# initializer.init_personalities()
+# initializer.init_celebs()
+# initializer.init_jobs()
 
 
 @app.route("/student", methods=(["POST"]))
