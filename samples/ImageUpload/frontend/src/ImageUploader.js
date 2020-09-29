@@ -24,7 +24,7 @@ function ImageUplodaer() {
 
   return (
     <div>
-      <h1>ImageUplodaer</h1>
+      <h1>ImageUploader</h1>
       <div>
         <img
           className="profile_preview"
